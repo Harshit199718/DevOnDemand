@@ -1,0 +1,147 @@
+.right-cont {
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
+    background-color: white;
+    z-index: 1;
+}
+
+.grad-back {
+    /* background: linear-gradient(0deg, #55368c, #593e9f, #6049b8, #6855d6); */
+    background-image: linear-gradient(180deg, #652cd4 0%, #54258f 100%);
+    z-index: 0;
+    position: relative;
+}
+
+.center-container{
+    position: relative;
+    width: 26vw;
+    height: 26vw;
+}
+
+.dotted-back-tr {
+    background: -moz-radial-gradient(rgba(255, 255, 255, 0.3) 32%, transparent 40%), transparent;
+    background: -webkit-radial-gradient(rgba(255, 255, 255, 0.3) 32%, transparent 40%), transparent;
+    background-position: 0 0, 0.83vw 0.83vw;
+    -webkit-background-size: 0.83vw 0.83vw;
+    -moz-background-size: 0.83vw 0.83vw;
+    background-size: 0.83vw 0.83vw;
+        width: 5vw;
+        height: 6.6vw;
+    position: absolute;
+    right:-1.5vw;
+    top:-4vw
+}
+.dotted-back-bl {
+    background: -moz-radial-gradient(rgba(255, 255, 255, 0.3) 32%, transparent 40%), transparent;
+    background: -webkit-radial-gradient(rgba(255, 255, 255, 0.3) 32%, transparent 40%), transparent;
+    background-position: 0 0, 0.83vw 0.83vw;
+    -webkit-background-size: 0.83vw 0.83vw;
+    -moz-background-size: 0.83vw 0.83vw;
+    background-size: 0.83vw 0.83vw;
+        width: 5vw;
+        height: 6.5vw;
+    position: absolute;
+    left:-1.5vw;
+    bottom:-2.5vw
+}
+
+.right-head-text {
+    line-height: normal;
+    font-size: xx-large;
+    font-weight: 600;
+    color:white;
+    font-family: 'Gilroy-ExtraBold';
+}
+
+.right-head-text sup{
+    font-size: 10px;
+    top:-15px;
+}
+
+.back-right-cont {
+    width: 50%;
+    height: 300px;
+    position: absolute;
+    background: linear-gradient(0deg, #6a4fc7, #6f57d9);
+    /* opacity: 0.1; */
+    top: 0;
+    right: 0;
+    z-index: -1;
+}
+
+/* dot navigation */
+
+.dotstyle ul {
+	position: relative;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	cursor: default;
+}
+
+.dotstyle li {
+	position: relative;
+	display: block;
+	float: left;
+	margin: 60px 10px 0 10px;
+	width: 5px;
+	height: 5px;
+	cursor: pointer;
+}
+
+.dotstyle li a {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	outline: none;
+	border-radius: 50%;
+    background-color: rgba(255,255,255,0.3);
+    transition: background-color 0.3s;
+	text-indent: -999em;
+	cursor: pointer; /* make the text accessible to screen readers */
+	position: absolute;
+}
+
+.active-page-link{
+	background-color: rgba(255,255,255,1)!important;
+}
+
+
+/* right container dots */
+
+.dotstyle-right-cont ul {
+	position: relative;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	cursor: default;
+}
+
+.dotstyle-right-cont li {
+	position: relative;
+	display: block;
+	float: left;
+	margin: 20px 2px 0 2px;
+	width: 4px;
+	height: 4px;
+	cursor: pointer;
+}
+
+.dotstyle-right-cont li a {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	outline: none;
+	border-radius: 50%;
+    background-color: rgba(0,0,0,0.2);
+    transition: background-color 0.3s;
+	text-indent: -999em;
+	cursor: pointer; /* make the text accessible to screen readers */
+	position: absolute;
+}
+

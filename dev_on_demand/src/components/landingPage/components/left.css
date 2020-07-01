@@ -1,0 +1,21 @@
+.left-head{
+    font-size: 27px;
+}
+
+.right-sign{
+    width:28px;
+    height:28px;
+    border-radius: 50%;
+    background-color: #4f178f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right-sign + span{
+    font-size: 11px;
+}
+
+.link-input{
+    height:30px;
+}
