@@ -33,10 +33,10 @@ res.setHeader("Access-Control-Allow-Credentials", "true");
 next();
 });
 app.use('/api', router)
-app.use(express.static(path.join(__dirname, './client/build')))
+app.use(express.static(path.join(__dirname, 'client/build')))
 
 app.get('*', (_, res) => {
-    res.sendFile(path.resolve(__dirname, './client/build/index.html'))
+    res.sendFile(path.resolve(__dirname, 'client/build/index.html'))
 })
 
 app.listen(port, () => console.log(`server running on port ${port}`))
