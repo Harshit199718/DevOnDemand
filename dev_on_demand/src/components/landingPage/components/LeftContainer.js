@@ -1,27 +1,91 @@
 import React from "react";
+import Select from 'react-select'
 import leftImage from "../../../assets/images/leftIcon.png";
 import clapImage from "../../../assets/images/clap.png";
 import checkB from "../../../assets/images/checkBack.png";
 import checkF from "../../../assets/images/checkFront.svg";
+import close from "../../../assets/images/close.png";
+import bars from "../../../assets/images/bars.png";
 import "./left.css";
+import PopupBox from "./PopupBox";
 
 export default class LeftContainer extends React.Component {
+  state = {
+    menuOpen: false,
+    AboutUs: false,
+    Pricing: false,
+    Thanks: false,
+    openPopup: false,
+  };
   render() {
+    console.log(this.state);
+    const {link, pages, email} = this.state
     return (
-      <div className="col-sm-12 col-md-6 col-lg-6 p-5">
+      <div className="col-md-6 col-lg-6 p-5 left_container">
+        <PopupBox
+          openPopup={this.state.openPopup}
+          setState={(obj) => this.setState(obj)}
+          Thanks={this.state.Thanks}
+          AboutUs={this.state.AboutUs}
+          Pricing={this.state.Pricing}
+        />
         <div>
-          <div className="row align-items-center mb-5">
-            <div className="col-md-6">
+          <div className="row align-items-center mb-5 top-bar">
+            <div className="col-8 col-md-7 d-flex align-items-center">
               <img
                 src={leftImage}
                 style={{ width: "60px", paddingRight: "20px" }}
                 alt=""
               />
-              on<span className="font-weight-bold bold-text">demand</span>
+              <p>on<span className="font-weight-bold bold-text">demand</span></p>
             </div>
-            <div className="col-md-6 h-100 d-flex align-items-center">
-              <span className="pl-5">Pricing</span>
-              <span className="ml-auto">About us</span>
+            {
+              !this.state.menuOpen?
+              <img onClick={() => {
+                this.setState({ menuOpen: !this.state.menuOpen });
+                console.log(this.state.menuOpen);
+              }} className='close ml-auto' src={bars} alt='X'/>
+              : 
+              <img onClick={() => {
+                this.setState({ menuOpen: !this.state.menuOpen });
+                console.log(this.state.menuOpen);
+              }} className='close ml-auto' src={close} alt='X'/>
+            }
+            <div
+              className={`col-md-5 h-100 d-flex align-items-center page-links ${
+                this.state.menuOpen ? "page-links-on" : ""
+              }`}
+            >
+              <div className="d-flex align-items-center col-12">
+                <p
+                  className="m-0"
+                  onClick={() =>
+                    this.setState({
+                      Pricing: true,
+                      AboutUs: false,
+                      Thanks: false,
+                      openPopup: true,
+                      menuOpen: false,
+                    })
+                  }
+                >
+                  Pricing
+                </p>
+                <p
+                  className="m-0 ml-auto"
+                  onClick={() =>
+                    this.setState({
+                      AboutUs: true,
+                      Pricing: false,
+                      Thanks: false,
+                      openPopup: true,
+                      menuOpen: false,
+                    })
+                  }
+                >
+                  About us
+                </p>
+              </div>
             </div>
           </div>
           <div className="row">
@@ -40,7 +104,7 @@ export default class LeftContainer extends React.Component {
             </div>
           </div>
           <div className="row">
-            <div className="col-sm-12 col-md-5 d-flex align-items-center">
+            <div className="col-sm-12 col-md-6 mb-2 mb-sm-0 d-flex align-items-center feat">
               <div className="right-sign">
                 <img src={checkF} className="front" alt="" />
               </div>
@@ -49,7 +113,7 @@ export default class LeftContainer extends React.Component {
               </span>
             </div>
 
-            <div className="col-sm-12 col-md-7 d-flex align-items-center">
+            <div className="col-sm-12 col-md-6 d-flex align-items-center feat">
               <div className="right-sign">
                 <img src={checkF} className="front" alt="" />
               </div>
@@ -60,38 +124,78 @@ export default class LeftContainer extends React.Component {
             <label htmlFor="imageLink" className="d-block col-12">
               Link to your design
             </label>
-            <div className="col-11">
+            <div className="col-12 col-md-11">
               <input
                 type="text"
                 name="imageLink"
                 className=""
                 placeholder="Wetransfer is the best option"
+                onChange={(e)=>this.setState({link: e.target.value})}
+                autoComplete="off"
               />
             </div>
             <label htmlFor="total-pages" className="d-block col-12 mt-2">
-              Link to your design
+              Number of Pages
             </label>
-            <div className="col-11">
-              <input
-                type="text"
+            <div className="col-12 col-md-11">
+              {/* <input
+                type="number"
                 name="total-pages"
                 className=""
-                placeholder="Wetransfer is the best option"
-              />
+                placeholder="Pages"
+                min="1"
+                onChange={(e)=>this.setState({pages: e.target.value})}
+              /> */}
+              <select className='selectpicker' name="" id="" value={this.state.pages} onChange={(e)=>this.setState({pages: parseInt(e.target.value)})}>
+                <option value="" disabled selected>Number of Pages</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+              {/* <Select options={[{value:1,label:1},{value:2,label:2},{value:3,label:3},{value:4,label:4},{value:5,label:5},{value:6,label:6}]}
+              placeholder="Number of pages"
+              components={{IndicatorSeparator:()=>null}}
+                styles={{
+                  container:(p)=>({...p,borderRadius:"9px"}),
+                  control:(p)=>({...p,borderRadius:"9px",padding:"4px",border: "2px solid #E2E3E9"
+
+                }),
+                }}
+              /> */}
             </div>
             <label htmlFor="email" className="d-block col-12 mt-2">
-              Link to your design
+              Your e-mail
             </label>
-            <div className="col-11">
+            <div className="col-12 col-md-11">
               <input
-                type="text"
+                type="email"
                 name="email"
                 className=""
-                placeholder="Wetransfer is the best option"
+                placeholder="name@email.com"
+                onChange={(e)=>this.setState({email: e.target.value})}
+                autoComplete="off"
               />
             </div>
-            <div className="col-11 mt-5">
-              <button className="btn-started">Get Started</button>
+            <div className="col-12 col-md-11 mt-5">
+              <button
+                className="btn-started"
+                onClick={(e) => {
+                  e.preventDefault();
+                  this.setState({
+                    Thanks: true,
+                    AboutUs: false,
+                    Pricing: false,
+                    openPopup: true,
+                  });
+                }}
+
+                disabled={!(link && email && pages)}
+              >
+                Get Started
+              </button>
             </div>
             <div className="col-11 terms_container mt-4">
               <p className="terms">

@@ -35,7 +35,7 @@ export default class MainComponent extends React.Component {
 
     render() {
         return (
-            <div className="row m-0">
+            <div className="row m-0 landing-page">
                 <LeftContainer/>
                 <RightContainer/>
             </div>
