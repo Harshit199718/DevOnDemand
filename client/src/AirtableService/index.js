@@ -7,14 +7,15 @@ Airtable.configure({
 });
 const base = Airtable.base(window.AIRTABLE_BASE_ID);
 
-const addRecords = (data) => {
+const addRecords = (data, callback) => {
     base(window.AIRTABLE_BASE_NAME).create(data, function (err, records) {
         if (err) {
             console.error(err);
             return;
         }
+        callback()
         records.forEach(function (record) {
-            console.log(record.getId());
+            // console.log(record.getId());
         });
     });
 }

@@ -15,22 +15,22 @@ export default class MainComponent extends React.Component {
     }
 
     handleAdd = () => {
-        services.addRecords([
-            {
-                fields: {
-                    Email: "divyamupadhyay884@gmail.com",
-                    Number: 9589099335,
-                    ImageUrl: "https://i.stack.imgur.com/GsDIl.jpg"
-                }
-            },
-            {
-                fields: {
-                    Email: "divyamupadhyay884@gmail.com",
-                    Number: 9589099335,
-                    ImageUrl: "https://i.stack.imgur.com/GsDIl.jpg"
-                }
-            }
-        ])
+        // services.addRecords([
+        //     {
+        //         fields: {
+        //             Email: "divyamupadhyay884@gmail.com",
+        //             Number: 9589099335,
+        //             ImageUrl: "https://i.stack.imgur.com/GsDIl.jpg"
+        //         }
+        //     },
+        //     {
+        //         fields: {
+        //             Email: "divyamupadhyay884@gmail.com",
+        //             Number: 9589099335,
+        //             ImageUrl: "https://i.stack.imgur.com/GsDIl.jpg"
+        //         }
+        //     }
+        // ])
     }
 
     render() {

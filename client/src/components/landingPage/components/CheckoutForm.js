@@ -10,14 +10,14 @@ import services from '../../../AirtableService'
 import constants from '../../../config/consts'
 import './Checkout.css'
 
-const CheckoutForm = ({ stripe, receipt_email, pages , designLink}) => {
+const CheckoutForm = ({ stripe, receipt_email, pages, designLink,...props }) => {
     const [receiptUrl, setReceiptUrl] = useState('')
-    const [error ,setError] = useState("")
+    const [error, setError] = useState("")
     const handleSubmit = event => {
         event.preventDefault()
         stripe.createToken()
             .then(({ token }) => {
-                return axios.post(constants.chargeUrl, {
+                return axios.post(window.CHARGE_URL, {
                     amount: 200 * pages,
                     source: token.id,
                     receipt_email
@@ -26,15 +26,19 @@ const CheckoutForm = ({ stripe, receipt_email, pages , designLink}) => {
                 let date = new Date()
                 services.addRecords([
                     {
-                        [window.FIELD_1]:receipt_email,
-                        [window.FIELD_2]:pages,
-                        [window.FIELD_3]:designLink,
-                        [window.FIELD_4]:date.toUTCString(),
+                        fields: {
+                            [window.FIELD_1]: receipt_email,
+                            [window.FIELD_2]: pages,
+                            [window.FIELD_3]: designLink,
+                            [window.FIELD_4]: date.toUTCString(),
+                        }
                     }
-                ])
-                setReceiptUrl(order.data.charge.receipt_url)
+                ],()=>{
+                    console.log("tttttttttttttttttttttttttttt")
+                    props.close(true)})
+                // setReceiptUrl(order.data.charge.receipt_url)
             }).catch(err => {
-                err.response.data.message&&setError(err.response.data.message)
+                // err.response && err.response.data && err.response.data.message && setError(err.response.data.message)
             })
     }
     if (receiptUrl) {

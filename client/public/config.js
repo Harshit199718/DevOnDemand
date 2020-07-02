@@ -11,7 +11,7 @@ var FIELD_4 = "Field4"             //field for date of order
 
 //all the stripe configuration goes here
 var STRIPE_PUBLISHABLE_KEY = "pk_test_IjYYbpNcomixaNaSemLK9z2j00Q6cEfhLt"
-var CHARGE_URL = 'http://localhost:7000/api/stripe/charge'
+var CHARGE_URL = '/api/stripe/charge'
 
 //page number options in form 
 var PAGES = [1,2,3,4,5,6,7,8]

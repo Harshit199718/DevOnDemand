@@ -14,7 +14,11 @@ html,body{
   height: 100%;
   min-height: 100%;
   font-family: Gilroy-Regular;
-  cursor: url('./assets/images/cursor.png'), auto;
+  cursor: url('./assets/images/cursor.png'), auto!important;
+}
+
+body * {
+  cursor: url('./assets/images/cursor.png'), auto!important;
 }
 
 .App {

@@ -1,3 +1,18 @@
+select option {
+    margin: 40px;
+    background: rgba(255, 255, 255, 0.3);
+    color: #000000;
+    padding: 10px!important;
+    height: 20px;
+    display: inline-block;
+    line-height: 2;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  }
+
+  select{
+      background: none;
+  }
+
 .top-bar>div:first-child p{
         font-size: 1.5em;
         display: inline-block;

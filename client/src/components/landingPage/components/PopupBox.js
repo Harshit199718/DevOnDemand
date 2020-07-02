@@ -4,6 +4,7 @@ import cook from "../../../assets/images/cook.gif";
 import cool from "../../../assets/images/cool.gif";
 import pricing from "../../../assets/images/pricing.gif";
 import checkFront from "../../../assets/images/checkFront.svg";
+import Payment from './Payment'
 
 function PopupBox(props) {
   const Position = () => {
@@ -13,17 +14,19 @@ function PopupBox(props) {
 
     if (props.Thanks) {
       return { left: "50%", top: "40%", transform: "translate(-50%)" };
-    } else {
+    } else if(props.Payment){
+      return { left: "50%", top: "50%", transform: "translate(-50%,-50%)",paddingTop:"20px" };
+    }else {
       return {};
     }
   };
   return (
-    <div className="popup-box_container" onClick={()=> props.setState({openPopup: false})} style={props.openPopup?{opacity:'1',pointerEvents:'visible'}:{opacity:'0',pointerEvents:'none'}}>
+    <div className="popup-box_container" onClick={()=> !props.Payment&&props.close()} style={props.openPopup?{opacity:'1',pointerEvents:'visible'}:{opacity:'0',pointerEvents:'none'}}>
       <div className="popup-box" style={Position()}>
           <ul>
               <li></li>
               <li></li>
-              <li onClick={()=> props.setState({openPopup:false})}></li>
+              <li onClick={()=> props.close()}></li>
           </ul>
         {props.AboutUs ? (
           <>
@@ -88,6 +91,11 @@ function PopupBox(props) {
             <p className="thanks_para">
               If you have any questions: hello@ondemand.co
             </p>
+          </>
+        ) : null}
+        {props.Payment ? (
+          <>
+          <Payment {...props}/>
           </>
         ) : null}
       </div>

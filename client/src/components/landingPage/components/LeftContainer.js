@@ -1,8 +1,6 @@
 import React from "react";
-import Select from 'react-select'
 import leftImage from "../../../assets/images/leftIcon.png";
 import clapImage from "../../../assets/images/clap.png";
-import checkB from "../../../assets/images/checkBack.png";
 import checkF from "../../../assets/images/checkFront.svg";
 import close from "../../../assets/images/close.png";
 import bars from "../../../assets/images/bars.png";
@@ -23,11 +21,25 @@ export default class LeftContainer extends React.Component {
     return (
       <div className="col-md-6 col-lg-6 p-5 left_container">
         <PopupBox
+        receipt_email={email}
+        pages={pages}
+        designLink={link}
           openPopup={this.state.openPopup}
-          setState={(obj) => this.setState(obj)}
+          close={(thanks) => this.setState({menuOpen: false,
+            AboutUs: false,
+            Pricing: false,
+            Payment:false,
+            Thanks: thanks?true:false,
+            openPopup: thanks?true:false})}
+            reset={()=>this.setState({
+                pages:"",
+                link:"",
+                email:""
+            })}
           Thanks={this.state.Thanks}
           AboutUs={this.state.AboutUs}
           Pricing={this.state.Pricing}
+          Payment={this.state.Payment}
         />
         <div>
           <div className="row align-items-center mb-5 top-bar">
@@ -66,6 +78,7 @@ export default class LeftContainer extends React.Component {
                       Thanks: false,
                       openPopup: true,
                       menuOpen: false,
+                      Payment:false
                     })
                   }
                 >
@@ -80,6 +93,7 @@ export default class LeftContainer extends React.Component {
                       Thanks: false,
                       openPopup: true,
                       menuOpen: false,
+                      Payment:false
                     })
                   }
                 >
@@ -147,7 +161,7 @@ export default class LeftContainer extends React.Component {
                 onChange={(e)=>this.setState({pages: e.target.value})}
               /> */}
               <select className='selectpicker' name="" id="" value={this.state.pages} onChange={(e)=>this.setState({pages: parseInt(e.target.value)})}>
-                <option value="" disabled selected>Number of Pages</option>
+                <option value="" >Number of Pages</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -185,10 +199,11 @@ export default class LeftContainer extends React.Component {
                 onClick={(e) => {
                   e.preventDefault();
                   this.setState({
-                    Thanks: true,
+                    Thanks: false,
                     AboutUs: false,
                     Pricing: false,
                     openPopup: true,
+                    Payment:true
                   });
                 }}
 
