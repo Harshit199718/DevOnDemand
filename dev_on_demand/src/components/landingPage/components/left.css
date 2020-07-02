@@ -1,5 +1,6 @@
 .left-head{
-    font-size: 27px;
+    font-size: 2.2vw;
+    font-weight: 800!important;
 }
 
 .right-sign{
@@ -18,4 +19,38 @@
 
 .link-input{
     height:30px;
+}
+
+.form-details input{
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #E2E3E9;
+}
+
+.form-details .btn-started{
+    width: 100%;
+    border: none;
+    outline: none;
+    /* background: #AE90E9; */
+    background: #4f178f;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px;
+    
+}
+
+.terms_container .terms{
+    font-size: 14px;
+    opacity: .6;
+    line-height: normal;
+}
+
+.terms_container .terms span{
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 5px;
 }
