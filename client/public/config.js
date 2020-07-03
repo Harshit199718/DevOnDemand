@@ -11,7 +11,7 @@ var FIELD_4 = "Field4"             //field for date of order
 
 //all the stripe configuration goes here
 var STRIPE_PUBLISHABLE_KEY = "pk_test_IjYYbpNcomixaNaSemLK9z2j00Q6cEfhLt"
-export var STRIPE_SECRET_KEY = "sk_test_MfJl1atQ4k9v3CQIz7dnBf1K006DiexW02"
+var STRIPE_SECRET_KEY = "sk_test_MfJl1atQ4k9v3CQIz7dnBf1K006DiexW02"
 var CHARGE_URL = '/api/stripe/charge'
 
 //page number options in form 
