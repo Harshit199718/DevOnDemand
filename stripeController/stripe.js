@@ -1,5 +1,5 @@
 const stripeObj = require('stripe')
-
+const STRIPE_SECRET_KEY = require('../client/build/config')
 async function postCharge(req, res) {
     try {
         const { amount,source,receipt_email} = req.body
