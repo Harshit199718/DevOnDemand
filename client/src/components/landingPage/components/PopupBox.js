@@ -46,26 +46,6 @@ function PopupBox(props) {
 
   };
 
-  const togglePopup = () => {
-    // setTimeout(()=>{
-      props.close()
-      setCall(true)
-      setClose(false)
-    // },1000)
-  }
-  const closeSet=()=>{
-    setTimeout(()=>{
-      setClose(true)
-    },100)
-  }
-  const callSet = ()=>{
-    setCall(false)
-    setTimeout(()=>{
-      setCall(true)
-      setClose(false)
-    },500)
-  }
-
   return (
     <div className="popup-box_container" onClick={()=> closeSet()} style={props.openPopup?{opacity:'1',pointerEvents:'visible'}:{opacity:'0',pointerEvents:'none'}}>
       <div className="popup-box" style={Position()} onClick={()=>callSet()}>
