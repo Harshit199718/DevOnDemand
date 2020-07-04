@@ -24,17 +24,6 @@ export default class LeftContainer extends React.Component {
     console.log(window.location.pathname == "/success")
     if (window.location.pathname == "/success") {
       this.setState({ Thanks: true, openPopup: true })
-      let date = new Date()
-      services.addRecords([
-        {
-          "fields": {
-            [`${window.FIELD_1}`]: this.state.email,
-            [`${window.FIELD_2}`]: this.state.pages,
-            [`${window.FIELD_3}`]: this.state.link,
-            [`${window.FIELD_4}`]: date.toUTCString(),
-          }
-        }
-      ])
     } else {
       this.setState({
         menuOpen: false,
@@ -57,6 +46,17 @@ export default class LeftContainer extends React.Component {
   handleClick = async () => {
     const { data: responseData } = await this.createCheckoutSession();
     const stripe = await stripePromise;
+    let date = new Date()
+    services.addRecords([
+      {
+        "fields": {
+          [`${window.FIELD_1}`]: this.state.email,
+          [`${window.FIELD_2}`]: this.state.pages,
+          [`${window.FIELD_3}`]: this.state.link,
+          [`${window.FIELD_4}`]: date.toUTCString(),
+        }
+      }
+    ])
     const { error } = await stripe.redirectToCheckout({
       sessionId: responseData.sessionId,
     });
