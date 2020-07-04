@@ -1,11 +1,11 @@
 //all the airtable configuration goes here
-var AIRTABLE_API_KEY = "keyAgvESt49x0VidM"
-var AIRTABLE_BASE_ID = "app0kebqTFfmEWOET"
-var AIRTABLE_BASE_NAME = "favourites"
-var FIELD_1 = "Email"           //field for customer email
-var FIELD_2 = "Number"           //field for no. of pages
-var FIELD_3 = "ImageUrl"             //field for design link
-var FIELD_4 = "Field4"             //field for date of order
+var AIRTABLE_API_KEY = "keyglptxk6ElDtiU2"
+var AIRTABLE_BASE_ID = "apptuaGCZDz6Fb12a"
+var AIRTABLE_BASE_NAME = "DevOnDemand"
+var FIELD_1 = "Mail"           //field for customer email
+var FIELD_2 = "Number of page"           //field for no. of pages
+var FIELD_3 = "Design Link"             //field for design link
+var FIELD_4 = "Date of the order"             //field for date of order
 
 
 

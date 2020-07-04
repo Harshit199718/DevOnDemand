@@ -10,7 +10,12 @@ select option {
   }
 
   select{
-      background: none;
+      /* background: none; */
+      background: url('../../../assets/images/caretdown.png') no-repeat right;
+    -webkit-appearance: none;
+    background-color: #fff;
+    background-position-x: 93%;
+    background-size: 6px;
   }
 
 .top-bar>div:first-child p{
@@ -41,6 +46,7 @@ select option {
     display: none;
     position: relative;
     cursor: pointer;
+    width: 25px;
 }
 
 .left_container .close{
@@ -109,10 +115,11 @@ select option {
     line-height: normal;
 }
 
-.terms_container .terms span{
+.terms_container .terms a{
     text-decoration: underline;
     cursor: pointer;
     margin-left: 5px;
+    color: #000;
 }
 
 @media (min-width: 577px) and (max-width: 1024px){

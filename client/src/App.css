@@ -18,7 +18,11 @@ html,body{
 }
 
 body * {
-  cursor: url('./assets/images/cursor.png'), auto!important;
+  cursor: url('./assets/images/cursor.png'), auto;
+}
+
+body li{
+  cursor: pointer!important;
 }
 
 .App {

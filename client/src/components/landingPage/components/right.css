@@ -97,9 +97,9 @@
 	display: block;
 	float: left;
 	margin: 60px 10px 0 10px;
-	width: 5px;
-	height: 5px;
-	cursor: pointer;
+	width: 8px;
+	height: 8px;
+	cursor: pointer!important;
 }
 
 .dotstyle li a {
@@ -117,7 +117,8 @@
 }
 
 .active-page-link{
-	background-color: rgba(255,255,255,1)!important;
+    background-color: rgba(255,255,255,1)!important;
+    cursor: pointer;
 }
 
 
