@@ -5,7 +5,7 @@ import cool from "../../../assets/images/cool.gif";
 import pricing from "../../../assets/images/pricing.gif";
 import checkFront from "../../../assets/images/checkFront.svg";
 import Payment from './Payment'
-
+var timeOut
 function PopupBox(props) {
   const [Call, setCall] = useState(true)
   const [close , setClose] = useState(false)
@@ -24,7 +24,8 @@ function PopupBox(props) {
   }
   const callSet = ()=>{
     setCall(false)
-    setTimeout(()=>{
+    timeOut&&clearTimeout(timeOut)
+    timeOut = setTimeout(()=>{
       setCall(true)
       setClose(false)
     },500)
