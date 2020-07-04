@@ -18,12 +18,16 @@ export default class LeftContainer extends React.Component {
     Pricing: false,
     Thanks: false,
     openPopup: false,
+    first: true
   };
 
+
   componentDidMount = () => {
-    console.log(window.location.pathname == "/success")
-    if (window.location.pathname == "/success") {
-      this.setState({ Thanks: true, openPopup: true })
+    // console.log(this.props.history.location.pathname == "/success",this.state.first)
+    // if(this.props.history.location.pathname!==prevProps.history.location.pathname){
+    if (this.props.history.location.pathname == "/success" && this.state.first) {
+      console.log("first")
+      this.setState({ Thanks: true, openPopup: true, first: false })
     } else {
       this.setState({
         menuOpen: false,
@@ -32,6 +36,25 @@ export default class LeftContainer extends React.Component {
         Thanks: false,
         openPopup: false,
       })
+      // }
+    }
+  }
+
+
+  componentDidUpdate = (prevProps) => {
+    console.log(this.props.history.location.pathname == "/success", this.state.first)
+    if (this.props.history.location.pathname !== prevProps.history.location.pathname) {
+      if ((this.props.history.location.pathname == "/success") && this.state.first) {
+        this.setState({ Thanks: true, openPopup: true, first: false })
+      } else {
+        // this.setState({
+        //   menuOpen: false,
+        //   AboutUs: false,
+        //   Pricing: false,
+        //   Thanks: false,
+        //   openPopup: false,
+        // })
+      }
     }
   }
 
@@ -63,6 +86,9 @@ export default class LeftContainer extends React.Component {
   };
 
   resetSuccess = () => {
+
+    // window.location.reload()
+
     this.setState({
       menuOpen: false,
       AboutUs: false,
@@ -73,10 +99,13 @@ export default class LeftContainer extends React.Component {
       link: "",
       pages: "",
       email: ""
-    },()=>{
+    }, () => {
       this.props.history.push("/")
+      // this.props.history.pushState(null, '/success');
+      // this.props.history.pushState(null, '/');
     })
   }
+
   render() {
     console.log(this.state);
     const { link, pages, email } = this.state

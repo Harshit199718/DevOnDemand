@@ -8,9 +8,9 @@ import './App.css';
 function App() {
   return (
     <Router>
-      <Route path="/" component={LandingPage} />
-      <Route path="/success" component={LandingPage} />
-      <Route path="/cancel" component={LandingPage} />
+      <Route exact path="/" component={LandingPage} />
+      <Route exact path="/success" component={LandingPage} />
+      <Route exact path="/cancel" component={LandingPage} />
     </Router>
   );
 }
