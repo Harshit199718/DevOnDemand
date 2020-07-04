@@ -1,7 +1,7 @@
 //all the airtable configuration goes here
 var AIRTABLE_API_KEY = "keyglptxk6ElDtiU2"
 var AIRTABLE_BASE_ID = "apptuaGCZDz6Fb12a"
-var AIRTABLE_BASE_NAME = "DevOnDemand"
+var AIRTABLE_BASE_NAME = "Orders"
 var FIELD_1 = "Mail"           //field for customer email
 var FIELD_2 = "Number of page"           //field for no. of pages
 var FIELD_3 = "Design Link"             //field for design link
