@@ -18,8 +18,8 @@ async function postCharge(req, res) {
               quantity: pageNumbers,
             }],
             mode: 'payment',
-            success_url: url+'/success',
-            cancel_url: url+'/cancel',
+            success_url: url+'success',
+            cancel_url: url+'cancel',
           });
         // const charge = await stripe.charges.create({
         //     currency: 'eur',
