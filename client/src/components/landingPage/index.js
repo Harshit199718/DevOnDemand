@@ -14,29 +14,10 @@ export default class MainComponent extends React.Component {
     componentDidMount() {
     }
 
-    handleAdd = () => {
-        // services.addRecords([
-        //     {
-        //         fields: {
-        //             Email: "divyamupadhyay884@gmail.com",
-        //             Number: 9589099335,
-        //             ImageUrl: "https://i.stack.imgur.com/GsDIl.jpg"
-        //         }
-        //     },
-        //     {
-        //         fields: {
-        //             Email: "divyamupadhyay884@gmail.com",
-        //             Number: 9589099335,
-        //             ImageUrl: "https://i.stack.imgur.com/GsDIl.jpg"
-        //         }
-        //     }
-        // ])
-    }
-
     render() {
         return (
             <div className="row m-0 landing-page">
-                <LeftContainer/>
+                <LeftContainer history={this.props.history}/>
                 <RightContainer/>
             </div>
         )

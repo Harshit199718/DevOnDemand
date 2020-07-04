@@ -5,12 +5,16 @@ import cool from "../../../assets/images/cool.gif";
 import pricing from "../../../assets/images/pricing.gif";
 import checkFront from "../../../assets/images/checkFront.svg";
 import Payment from './Payment'
-var timeOut
+var timeOut,timeOut1
 function PopupBox(props) {
   const [Call, setCall] = useState(true)
   const [close , setClose] = useState(false)
   useEffect(() => {
     close&&Call&&togglePopup()
+    return ()=>{
+      clearTimeout(timeOut)
+      clearTimeout(timeOut1)
+    }
   }, [close])
   const togglePopup = () => {
       props.close()
@@ -18,7 +22,7 @@ function PopupBox(props) {
       setClose(false)
   }
   const closeSet=()=>{
-    setTimeout(()=>{
+    timeOut1 = setTimeout(()=>{
       setClose(true)
     },100)
   }

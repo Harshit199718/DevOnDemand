@@ -1,4 +1,7 @@
 import React from "react";
+import { loadStripe } from '@stripe/stripe-js';
+import services from '../../../AirtableService'
+import Axios from 'axios';
 import leftImage from "../../../assets/images/leftIcon.png";
 import clapImage from "../../../assets/images/clap.png";
 import checkF from "../../../assets/images/checkFront.svg";
@@ -6,6 +9,7 @@ import close from "../../../assets/images/close.png";
 import bars from "../../../assets/images/bars.png";
 import "./left.css";
 import PopupBox from "./PopupBox";
+const stripePromise = loadStripe(window.STRIPE_PUBLISHABLE_KEY);
 
 export default class LeftContainer extends React.Component {
   state = {
@@ -15,35 +19,84 @@ export default class LeftContainer extends React.Component {
     Thanks: false,
     openPopup: false,
   };
+
+  componentDidMount = () => {
+    console.log(window.location.pathname == "/success")
+    if (window.location.pathname == "/success") {
+      this.setState({ Thanks: true, openPopup: true })
+      let date = new Date()
+      services.addRecords([
+        {
+          "fields": {
+            [`${window.FIELD_1}`]: this.state.email,
+            [`${window.FIELD_2}`]: this.state.pages,
+            [`${window.FIELD_3}`]: this.state.link,
+            [`${window.FIELD_4}`]: date.toUTCString(),
+          }
+        }
+      ])
+    } else {
+      this.setState({
+        menuOpen: false,
+        AboutUs: false,
+        Pricing: false,
+        Thanks: false,
+        openPopup: false,
+      })
+    }
+  }
+
+  createCheckoutSession = () => {
+    return Axios.post(window.CHARGE_URL, {
+      amount: 200,
+      pageNumbers: this.state.pages,
+      url: window.location.href
+    })
+  }
+
+  handleClick = async () => {
+    const { data: responseData } = await this.createCheckoutSession();
+    const stripe = await stripePromise;
+    const { error } = await stripe.redirectToCheckout({
+      sessionId: responseData.sessionId,
+    });
+  };
   render() {
     console.log(this.state);
-    const {link, pages, email} = this.state
+    const { link, pages, email } = this.state
     return (
       <div className="col-md-6 col-lg-6 p-5 left_container">
         <PopupBox
-        receipt_email={email}
-        pages={pages}
-        designLink={link}
+          receipt_email={email}
+          pages={pages}
+          designLink={link}
           openPopup={this.state.openPopup}
-          close={(thanks) => this.setState({menuOpen: false,
-            AboutUs: false,
-            Pricing: false,
-            Payment:false,
-            Thanks: thanks?true:false,
-            openPopup: thanks?true:false})}
-            reset={()=>this.setState({
-                pages:"",
-                link:"",
-                email:""
-            })}
-            open={()=>{
-              console.log("open clicked")
-              this.setState({menuOpen: false,
+          close={(thanks) => {
+            !this.state.Thanks ? this.setState({
+              menuOpen: false,
               AboutUs: false,
               Pricing: false,
-              Payment:true,
+              Payment: false,
               Thanks: false,
-              openPopup: true})}}
+              openPopup: false
+            }) : this.props.history.push("/")
+          }}
+          reset={() => this.setState({
+            pages: "",
+            link: "",
+            email: ""
+          })}
+          open={() => {
+            console.log("open clicked")
+            this.setState({
+              menuOpen: false,
+              AboutUs: false,
+              Pricing: false,
+              Payment: true,
+              Thanks: false,
+              openPopup: true
+            })
+          }}
           Thanks={this.state.Thanks}
           AboutUs={this.state.AboutUs}
           Pricing={this.state.Pricing}
@@ -60,21 +113,21 @@ export default class LeftContainer extends React.Component {
               <p>on<span className="font-weight-bold bold-text">demand</span></p>
             </div>
             {
-              !this.state.menuOpen?
-              <img onClick={() => {
-                this.setState({ menuOpen: !this.state.menuOpen });
-                console.log(this.state.menuOpen);
-              }} className='close ml-auto' src={bars} alt='X'/>
-              : 
-              <img onClick={() => {
-                this.setState({ menuOpen: !this.state.menuOpen });
-                console.log(this.state.menuOpen);
-              }} className='close ml-auto' src={close} alt='X'/>
+              !this.state.menuOpen ?
+                <img onClick={() => {
+                  this.setState({ menuOpen: !this.state.menuOpen });
+                  console.log(this.state.menuOpen);
+                }} className='close ml-auto' src={bars} alt='X' />
+                :
+                <img onClick={() => {
+                  this.setState({ menuOpen: !this.state.menuOpen });
+                  console.log(this.state.menuOpen);
+                }} className='close ml-auto' src={close} alt='X' />
             }
             <div
               className={`col-md-5 h-100 d-flex align-items-center page-links ${
                 this.state.menuOpen ? "page-links-on" : ""
-              }`}
+                }`}
             >
               <div className="d-flex align-items-center col-12">
                 <p
@@ -86,7 +139,7 @@ export default class LeftContainer extends React.Component {
                       Thanks: false,
                       openPopup: true,
                       menuOpen: false,
-                      Payment:false
+                      Payment: false
                     })
                   }
                 >
@@ -101,7 +154,7 @@ export default class LeftContainer extends React.Component {
                       Thanks: false,
                       openPopup: true,
                       menuOpen: false,
-                      Payment:false
+                      Payment: false
                     })
                   }
                 >
@@ -152,7 +205,7 @@ export default class LeftContainer extends React.Component {
                 name="imageLink"
                 className=""
                 placeholder="Wetransfer is the best option"
-                onChange={(e)=>this.setState({link: e.target.value})}
+                onChange={(e) => this.setState({ link: e.target.value })}
                 autoComplete="off"
               />
             </div>
@@ -168,7 +221,7 @@ export default class LeftContainer extends React.Component {
                 min="1"
                 onChange={(e)=>this.setState({pages: e.target.value})}
               /> */}
-              <select className='selectpicker' name="" id="" value={this.state.pages} onChange={(e)=>this.setState({pages: parseInt(e.target.value)})}>
+              <select className='selectpicker' name="" id="" value={this.state.pages} onChange={(e) => this.setState({ pages: parseInt(e.target.value) })}>
                 <option value="" >Number of Pages</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -197,7 +250,7 @@ export default class LeftContainer extends React.Component {
                 name="email"
                 className=""
                 placeholder="name@email.com"
-                onChange={(e)=>this.setState({email: e.target.value})}
+                onChange={(e) => this.setState({ email: e.target.value })}
                 autoComplete="off"
               />
             </div>
@@ -206,16 +259,17 @@ export default class LeftContainer extends React.Component {
                 className="btn-started"
                 onClick={(e) => {
                   e.preventDefault();
-                  this.setState({
-                    Thanks: false,
-                    AboutUs: false,
-                    Pricing: false,
-                    openPopup: true,
-                    Payment:true
-                  });
+                  this.handleClick()
+                  // this.setState({
+                  //   Thanks: false,
+                  //   AboutUs: false,
+                  //   Pricing: false,
+                  //   openPopup: true,
+                  //   Payment: true
+                  // });
                 }}
 
-                disabled={!(link && (email?email.includes('@'):null) && pages)}
+                disabled={!(link && (email ? email.includes('@') : null) && pages)}
               >
                 Get Started
               </button>
