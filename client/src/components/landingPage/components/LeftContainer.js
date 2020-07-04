@@ -61,6 +61,21 @@ export default class LeftContainer extends React.Component {
       sessionId: responseData.sessionId,
     });
   };
+
+  resetSuccess = () => {
+    this.props.history.push("/")
+    this.setState({
+      menuOpen: false,
+      AboutUs: false,
+      Pricing: false,
+      Payment: false,
+      Thanks: false,
+      openPopup: false,
+      link: "",
+      pages: "",
+      email: ""
+    })
+  }
   render() {
     console.log(this.state);
     const { link, pages, email } = this.state
@@ -79,7 +94,7 @@ export default class LeftContainer extends React.Component {
               Payment: false,
               Thanks: false,
               openPopup: false
-            }) : this.props.history.push("/")
+            }) : this.resetSuccess()
           }}
           reset={() => this.setState({
             pages: "",
