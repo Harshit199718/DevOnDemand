@@ -63,7 +63,6 @@ export default class LeftContainer extends React.Component {
   };
 
   resetSuccess = () => {
-    this.props.history.push("/")
     this.setState({
       menuOpen: false,
       AboutUs: false,
@@ -74,6 +73,8 @@ export default class LeftContainer extends React.Component {
       link: "",
       pages: "",
       email: ""
+    },()=>{
+      this.props.history.push("/")
     })
   }
   render() {
