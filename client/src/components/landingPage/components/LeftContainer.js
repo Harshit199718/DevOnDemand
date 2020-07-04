@@ -36,6 +36,14 @@ export default class LeftContainer extends React.Component {
                 link:"",
                 email:""
             })}
+            open={()=>{
+              console.log("open clicked")
+              this.setState({menuOpen: false,
+              AboutUs: false,
+              Pricing: false,
+              Payment:true,
+              Thanks: false,
+              openPopup: true})}}
           Thanks={this.state.Thanks}
           AboutUs={this.state.AboutUs}
           Pricing={this.state.Pricing}

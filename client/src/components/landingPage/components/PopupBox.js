@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import "./popup.css";
 import cook from "../../../assets/images/cook.gif";
 import cool from "../../../assets/images/cool.gif";
@@ -7,11 +7,15 @@ import checkFront from "../../../assets/images/checkFront.svg";
 import Payment from './Payment'
 
 function PopupBox(props) {
+  const [Call, setCall] = useState(true)
+  const [close , setClose] = useState(false)
+  useEffect(() => {
+    close&&Call&&togglePopup()
+  }, [close])
   const Position = () => {
     if (props.Pricing) {
       return { left: "33%", top: "100px" };
     }
-
     if (props.Thanks) {
       return { left: "50%", top: "40%", transform: "translate(-50%)" };
     } else if(props.Payment){
@@ -19,10 +23,33 @@ function PopupBox(props) {
     }else {
       return {};
     }
+
+
   };
+
+  const togglePopup = () => {
+    // setTimeout(()=>{
+      props.close()
+      setCall(true)
+      setClose(false)
+    // },1000)
+  }
+  const closeSet=()=>{
+    setTimeout(()=>{
+      setClose(true)
+    },100)
+  }
+  const callSet = ()=>{
+    setCall(false)
+    setTimeout(()=>{
+      setCall(true)
+      setClose(false)
+    },500)
+  }
+
   return (
-    <div className="popup-box_container" onClick={()=> !props.Payment&&props.close()} style={props.openPopup?{opacity:'1',pointerEvents:'visible'}:{opacity:'0',pointerEvents:'none'}}>
-      <div className="popup-box" style={Position()}>
+    <div className="popup-box_container" onClick={()=> closeSet()} style={props.openPopup?{opacity:'1',pointerEvents:'visible'}:{opacity:'0',pointerEvents:'none'}}>
+      <div className="popup-box" style={Position()} onClick={()=> callSet()} >
           <ul>
               <li></li>
               <li></li>
