@@ -43,8 +43,8 @@
 }
 
 .popup-box ul li:last-child{
-    width: 8px;
-    height: 8px;
+    width: 11px;
+    height: 11px;
     background: red;
     cursor: pointer;
     

@@ -119,7 +119,7 @@ export default class LeftContainer extends React.Component {
                 Responsive and pixel perfect React development for &euro;200{" "}
                 <img
                   src={clapImage}
-                  style={{ width: "14px", marginBottom: "4px" }}
+                  style={{ width: "25px", marginBottom: "4px" }}
                   alt=""
                 />
               </p>
@@ -215,7 +215,7 @@ export default class LeftContainer extends React.Component {
                   });
                 }}
 
-                disabled={!(link && email && pages)}
+                disabled={!(link && (email?email.includes('@'):null) && pages)}
               >
                 Get Started
               </button>
@@ -223,8 +223,8 @@ export default class LeftContainer extends React.Component {
             <div className="col-11 terms_container mt-4">
               <p className="terms">
                 By clicking the button, you agree to our
-                <span>Terms of Service</span> and have read the acknowledge our
-                <span>Privacy Policy</span>
+                <a href="http://www.devondemand.co/terms"> Terms of Service</a> and have read the acknowledge our
+                <a href="http://www.devondemand.co/privacy">Privacy Policy</a>
               </p>
             </div>
           </form>

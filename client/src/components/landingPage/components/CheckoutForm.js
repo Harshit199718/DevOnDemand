@@ -26,11 +26,11 @@ const CheckoutForm = ({ stripe, receipt_email, pages, designLink,...props }) => 
                 let date = new Date()
                 services.addRecords([
                     {
-                        fields: {
-                            [window.FIELD_1]: receipt_email,
-                            [window.FIELD_2]: pages,
-                            [window.FIELD_3]: designLink,
-                            [window.FIELD_4]: date.toUTCString(),
+                        "fields": {
+                            [`${window.FIELD_1}`]: receipt_email,
+                            [`${window.FIELD_2}`]: pages,
+                            [`${window.FIELD_3}`]: designLink,
+                            [`${window.FIELD_4}`]: date.toUTCString(),
                         }
                     }
                 ],()=>{
