@@ -117,12 +117,12 @@ export default class LeftContainer extends React.Component {
                 <img onClick={() => {
                   this.setState({ menuOpen: !this.state.menuOpen });
                   console.log(this.state.menuOpen);
-                }} className='close ml-auto' src={bars} alt='X' />
+                }} className='close1 ml-auto' src={bars} alt='' />
                 :
                 <img onClick={() => {
                   this.setState({ menuOpen: !this.state.menuOpen });
                   console.log(this.state.menuOpen);
-                }} className='close ml-auto' src={close} alt='X' />
+                }} className='close1 ml-auto' src={close} alt='X' />
             }
             <div
               className={`col-md-5 h-100 d-flex align-items-center page-links ${
@@ -222,7 +222,7 @@ export default class LeftContainer extends React.Component {
                 onChange={(e)=>this.setState({pages: e.target.value})}
               /> */}
               <select className='selectpicker' name="" id="" value={this.state.pages} onChange={(e) => this.setState({ pages: parseInt(e.target.value) })}>
-                <option value="" >Number of Pages</option>
+                <option value="" disabled selected>Number of Pages</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>

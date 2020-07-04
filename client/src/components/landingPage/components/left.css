@@ -11,11 +11,12 @@ select option {
 
   select{
       /* background: none; */
+      font-size: 1.2em;
       background: url('../../../assets/images/caretdown.png') no-repeat right;
     -webkit-appearance: none;
     background-color: #fff;
-    background-position-x: 93%;
-    background-size: 6px;
+    background-position-x: 96%;
+    background-size: 7px;
   }
 
 .top-bar>div:first-child p{
@@ -49,7 +50,7 @@ select option {
     width: 25px;
 }
 
-.left_container .close{
+.left_container .close1{
     width: 20px;
     cursor: pointer;
 }
@@ -89,7 +90,7 @@ select option {
 }
 
 .form-details select{
-    padding: 14px;
+    padding: 10px;
 }
 
 .form-details .btn-started{
@@ -149,6 +150,7 @@ select option {
 }
 
 .form-details select{
+    font-size: 2em;
     padding: 23px;
 }
 
@@ -159,7 +161,7 @@ select option {
     cursor: pointer;
 }
 
-.left_container .close{
+.left_container .close1{
     width: 20px;
     cursor: pointer;
 }
@@ -249,7 +251,7 @@ select option {
     }
 
     
-    .left_container .close{
+    .left_container .close1{
         margin-right: 3rem!important;
     }
 
@@ -316,6 +318,10 @@ select option {
 
 @media (max-width: 576px){
 
+    select{
+        font-size: 3vw!important;
+    }
+
     .left_container{
         padding: 20px 0!important;
     }
@@ -323,7 +329,7 @@ select option {
         margin:0 1rem!important
     }
 
-    .left_container .close{
+    .left_container .close1{
         margin-right: 0!important;
     }
 
@@ -342,6 +348,7 @@ select option {
 
     .form-details select{
         padding: 8px;
+        font-size: 3vw;
     }
 
     .right-sign{
